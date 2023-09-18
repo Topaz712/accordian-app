@@ -9,6 +9,9 @@
   <style>
 
     body, .jumbotron { padding: 30px; }
+    html {
+      overflow-y: scroll;
+    }
     body {
       background: #EFEFEF;
     }
@@ -62,7 +65,7 @@
 
     <div class="accordian">
       <ul class="list-unstyled">
-        <li class="open">
+        <li>
           <div class="question">
             <h2>Will I be rich?</h2>
             <span class="glyphicon glyphicon-chevron-down icon"></span>
@@ -100,7 +103,15 @@
     const questions = accordian.querySelectorAll('.question');
 
     function toggleAccordian() {
-      console.log(this.parentNode);
+      const thisItem = this.parentNode;
+
+      items.forEach(item => {
+        if(thisItem === item) {
+          thisItem.classList.toggle('open');
+          return
+        }
+        item.classList.remove('open');
+      });
     }
 
     questions.forEach(question => question.addEventListener('click', toggleAccordian));
